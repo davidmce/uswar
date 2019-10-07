@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+	<meta name="theme-color" content="#3C3B6E">
+	
+    <title>Is the US currently at War?</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/main.css" rel="stylesheet">
+		
+	<style>
+	body {padding-top:0}
+	.bar {height: 8px;margin-bottom:2em}
+	.bar .box1 {height: 8px;background-color:#3C3B6E}
+	.bar .box2 {height: 8px;background-color:#fff}
+	.bar .box3 {height: 8px;background-color:#B22234}
+	</style>
+ </head>
+
+  <body>
+  
+<div class="container-fluid">
+  <div class="row bar">
+    <div class="col-sm box1"></div>
+    <div class="col-sm box2"></div>
+    <div class="col-sm box3"></div>
+  </div>
+ </div>
+<div class="container">
+ 
+  <div class="jumbotron">
+  <p class="lead"><i class="em em-flag-um" aria-role="presentation" aria-label="U.S. Outlying Islands Flag"></i> Is the US currently at war? <i class="em em-flag-um" aria-role="presentation" aria-label="U.S. Outlying Islands Flag"></i></p>
+  <h1 class="display-4" id="result"></h1>
+  <hr class="my-4">
+  <p>The US has been at war for most of it's history, check it out on <a href="https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_States">Wikipedia</a>.</p>
+</div>
+		</div>
+<pre id="json"></pre>
+		
+<div class="container-fluid">
+  <div class="row bar">
+    <div class="col-sm box1"></div>
+    <div class="col-sm box2"></div>
+    <div class="col-sm box3"></div>
+  </div>
+ </div>
+<script>
+	//check if at war
+	$.ajax( {
+    url: "https://en.wikipedia.org/w/api.php",
+    jsonp: "callback", 
+    dataType: 'jsonp', 
+    data: { 
+        action: "parse", 
+        page: "List of wars involving the United States", 
+       // page: "Cheese", 
+        format: "json" 
+    },
+    xhrFields: { withCredentials: true },
+    success: function(response) { 
+		var wiki = response; 
+		var wikitext = JSON.stringify(wiki,null,'\t');
+		var n = wikitext.search("-present");
+		console.log(n);
+		if (n > 1){$('#result').append('YES');}else{$('#result').append('NO!!!');}
+		}
+
+	});
+
+ 
+</script>
+</html>
+  
