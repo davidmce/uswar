@@ -1,0 +1,5 @@
+#Force non-www:
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.istheuscurrentlyatwar.xyz/ [NC]
+
+RewriteRule ^(.*)$ http://istheuscurrentlyatwar.xyz/$1 [L,R=301]
