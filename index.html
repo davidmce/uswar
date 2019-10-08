@@ -28,6 +28,7 @@
 	.bar .box1 {height: 8px;background-color:#3C3B6E}
 	.bar .box2 {height: 8px;background-color:#fff}
 	.bar .box3 {height: 8px;background-color:#B22234}
+	.display-1 {font-size: 10rem;}
 	</style>
 	  
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -54,13 +55,13 @@
 <div class="container">
  
   <div class="jumbotron">
-  <p class="lead"><i class="em em-flag-um" aria-role="presentation" aria-label="U.S. Outlying Islands Flag"></i> Is the US currently at war? <i class="em em-flag-um" aria-role="presentation" aria-label="U.S. Outlying Islands Flag"></i></p>
-  <h1 class="display-4" id="result"></h1>
+  <h1 class="display-4 text-center"><i class="em em-flag-um" aria-role="presentation" aria-label="U.S. Outlying Islands Flag"></i> Is the US currently at war? <i class="em em-flag-um" aria-role="presentation" aria-label="U.S. Outlying Islands Flag"></i></h1>
+  <p class="display-1 text-center" id="result"></>
   <hr class="my-4">
   <p>The US has been at war for most of it's history, check it out on <a href="https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_States">Wikipedia</a>.</p>
+</div>		
 </div>
-		</div>
-<pre id="json"></pre>
+
 		
 <div class="container-fluid">
   <div class="row bar">
@@ -69,6 +70,39 @@
     <div class="col-sm box3"></div>
   </div>
  </div>
+<main class="container">
+	<div class="row">
+		<div class="col-sm">
+			<h2>The US armed forces:</h2>			
+			<p>As of 2019, the U.S. spends US$693 billion to fund its armed forces mandatory and 
+			discretionary accounts. As of 2018, the U.S. constitutes roughly 36 percent of the world's military 
+			expenditures.</p>
+			<p>The U.S. Armed Forces has significant capabilities in both defense and power projection due 
+			to its large budget, resulting in advanced and powerful technologies which enables a widespread deployment 
+			of the force around the world, including around 800 military bases outside the United States.</p>
+			<p>The U.S. Air Force is the world's largest air force, the U.S. Navy is the world's largest navy by tonnage, 
+			and the U.S. Navy and the U.S. Marine Corps combined are the world's second largest air arm.</p>
+		</div>
+		<div class="col-sm">
+			<h2>US Wars:</h2>
+			<p>The US has been involved in armed conflict for much of it history as an independent nation.</p> 
+			<p>By 2019, the US has spent a total of 18	years without involvement in armed conflict, either at home or abroad</p>
+			<p class="lead">This accounts for a total of 92.6% of its history.</p>
+		</div>
+	</div>
+	<div class="row">
+	 <div class="col-md-3 offset-md-9"><cite>sources: <a href="https://en.wikipedia.org/wiki/United_States_Armed_Forces">wikipedia</a>, <a href="https://en.wikipedia.org/wiki/List_of_wars_involving_the_United_States">wikipedia</a>, more <a href="https://en.wikipedia.org/wiki/Timeline_of_United_States_military_operations">wikipedia</a></cite></div>
+	
+	</div>
+</main>
+
+<footer class="container-fluid">
+  <div class="row bar">
+    <div class="col-sm box1"></div>
+    <div class="col-sm box2"></div>
+    <div class="col-sm box3"></div>
+  </div>
+ </footer>
 <script>
 	//check if at war
 	$.ajax( {
