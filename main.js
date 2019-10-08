@@ -1,1 +1,20 @@
-var a=['NO!!!','string','constructor','length','debu','gger','action','stateObject','apply','function\x20*\x5c(\x20*\x5c)','\x5c+\x5c+\x20*(?:_0x(?:[a-f0-9]){4,6}|(?:\x5cb|\x5cd)[a-z0-9]{1,4}(?:\x5cb|\x5cd))','init','chain','input','ajax','https://en.wikipedia.org/w/api.php','jsonp','parse','List\x20of\x20wars\x20involving\x20the\x20United\x20States','json','stringify','search','-present','log','#result','YES','append'];(function(c,d){var e=function(f){while(--f){c['push'](c['shift']());}};var g=function(){var h={'data':{'key':'cookie','value':'timeout'},'setCookie':function(i,j,k,l){l=l||{};var m=j+'='+k;var n=0x0;for(var n=0x0,p=i['length'];n<p;n++){var q=i[n];m+=';\x20'+q;var r=i[q];i['push'](r);p=i['length'];if(r!==!![]){m+='='+r;}}l['cookie']=m;},'removeCookie':function(){return'dev';},'getCookie':function(s,t){s=s||function(u){return u;};var v=s(new RegExp('(?:^|;\x20)'+t['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var w=function(x,y){x(++y);};w(e,d);return v?decodeURIComponent(v[0x1]):undefined;}};var z=function(){var A=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return A['test'](h['removeCookie']['toString']());};h['updateCookie']=z;var B='';var C=h['updateCookie']();if(!C){h['setCookie'](['*'],'counter',0x1);}else if(C){B=h['getCookie'](null,'counter');}else{h['removeCookie']();}};g();}(a,0x8f));var b=function(c,d){c=c-0x0;var e=a[c];return e;};var e=function(){var c=!![];return function(d,e){var f=c?function(){if(e){var g=e['apply'](d,arguments);e=null;return g;}}:function(){};c=![];return f;};}();var w=e(this,function(){var c=function(){return'\x64\x65\x76';},d=function(){return'\x77\x69\x6e\x64\x6f\x77';};var e=function(){var f=new RegExp('\x5c\x77\x2b\x20\x2a\x5c\x28\x5c\x29\x20\x2a\x7b\x5c\x77\x2b\x20\x2a\x5b\x27\x7c\x22\x5d\x2e\x2b\x5b\x27\x7c\x22\x5d\x3b\x3f\x20\x2a\x7d');return!f['\x74\x65\x73\x74'](c['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var g=function(){var h=new RegExp('\x28\x5c\x5c\x5b\x78\x7c\x75\x5d\x28\x5c\x77\x29\x7b\x32\x2c\x34\x7d\x29\x2b');return h['\x74\x65\x73\x74'](d['\x74\x6f\x53\x74\x72\x69\x6e\x67']());};var i=function(j){var k=~-0x1>>0x1+0xff%0x0;if(j['\x69\x6e\x64\x65\x78\x4f\x66']('\x69'===k)){l(j);}};var l=function(m){var n=~-0x4>>0x1+0xff%0x0;if(m['\x69\x6e\x64\x65\x78\x4f\x66']((!![]+'')[0x3])!==n){i(m);}};if(!e()){if(!g()){i('\x69\x6e\x64\u0435\x78\x4f\x66');}else{i('\x69\x6e\x64\x65\x78\x4f\x66');}}else{i('\x69\x6e\x64\u0435\x78\x4f\x66');}});w();var d=function(){var f=!![];return function(g,h){var i=f?function(){if(h){var j=h[b('0x0')](g,arguments);h=null;return j;}}:function(){};f=![];return i;};}();(function(){d(this,function(){var k=new RegExp(b('0x1'));var l=new RegExp(b('0x2'),'i');var m=c(b('0x3'));if(!k['test'](m+b('0x4'))||!l['test'](m+b('0x5'))){m('0');}else{c();}})();}());$[b('0x6')]({'url':b('0x7'),'jsonp':'callback','dataType':b('0x8'),'data':{'action':b('0x9'),'page':b('0xa'),'format':b('0xb')},'xhrFields':{'withCredentials':!![]},'success':function(n){var o=n;var p=JSON[b('0xc')](o,null,'\x09');var q=p[b('0xd')](b('0xe'));console[b('0xf')](q);if(q>0x1){$(b('0x10'))['append'](b('0x11'));}else{$(b('0x10'))[b('0x12')](b('0x13'));}}});function c(r){function s(t){if(typeof t===b('0x14')){return function(u){}[b('0x15')]('while\x20(true)\x20{}')['apply']('counter');}else{if((''+t/t)[b('0x16')]!==0x1||t%0x14===0x0){(function(){return!![];}[b('0x15')](b('0x17')+b('0x18'))['call'](b('0x19')));}else{(function(){return![];}[b('0x15')](b('0x17')+b('0x18'))[b('0x0')](b('0x1a')));}}s(++t);}try{if(r){return s;}else{s(0x0);}}catch(v){}}
+//check if at war
+$.ajax( {
+	url: "https://en.wikipedia.org/w/api.php",
+	jsonp: "callback", 
+	dataType: 'jsonp', 
+	data: { 
+		action: "parse", 
+		page: "List of wars involving the United States", 
+		// page: "Cheese", 
+		format: "json" 
+	},
+	xhrFields: { withCredentials: true },
+	success: function(response) { 
+		var wiki = response; 
+		var wikitext = JSON.stringify(wiki,null,'\t');
+		var n = wikitext.search("-present");
+		//console.log(n);
+		if (n > 1){$('#result').append('YES');}else{$('#result').append('NO!!!');}
+	}
+});
