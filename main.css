@@ -1,6 +1,7 @@
 body {padding-top:0}
-.bar {height: 8px;margin-bottom:2em}
+.bar {height: 8px;margin-bottom:2em;margin-top: 1em;}
 .bar .box1 {height: 8px;background-color:#3C3B6E}
 .bar .box2 {height: 8px;background-color:#fff}
 .bar .box3 {height: 8px;background-color:#B22234}
 .display-1 {font-size: 10rem;}
+.list-group-item {border: none;}
