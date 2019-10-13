@@ -125,6 +125,7 @@
 			</div>
 		</aside>
 	</main>
+	<button id="load">load</button><div id="load_space"></div>
 	<footer class="container-fluid">
 		<div class="row bar">
 			<div class="col-sm box1"></div><div class="col-sm box2"></div><div class="col-sm box3"></div>
@@ -132,5 +133,12 @@
 	</footer>
 	<script src="assets/main.js"></script>
 	<script async="async" data-cfasync="false" src="//pl15198512.pvclouds.com/4e56467fa95044092a880f0655e8b58e/invoke.js"></script>
+	<script>
+	$(document).ready(function(){
+  		$("button#load").click(function(){
+    			$("#load_space").load("assets/main.css");
+  		});
+	});	
+	</script>
 </body>
 </html>
