@@ -18,3 +18,39 @@ $.ajax( {
 		if (n > 1){$('#result').append('YES');}else{$('#result').append('NO!!!');}
 	}
 });
+
+function getWikiImg(title,callback){
+$.ajax( {
+	url: "https://en.wikipedia.org/w/api.php",
+	jsonp: "callback", 
+	dataType: 'jsonp', 
+	data: { 
+		action: "query", 
+		titles: title, 
+		prop: "pageimages",
+		format: "json",
+		pithumbsize: "260"
+	},
+	xhrFields: { withCredentials: true },
+	
+	success: function(response) { 
+		
+		var wikiResponse = response;
+		
+		for (const x in response.query.pages){
+			var pageID = x;
+		}
+		//console.log(wikiResponse);
+		//console.log(pageID);
+		//console.log(wikiResponse.query.pages[pageID].thumbnail.source);
+		var imgUrl = wikiResponse.query.pages[pageID].thumbnail.source;
+		callback(imgUrl);
+		//console.log('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/'+imgTitle+'/240px-'+imgTitle);
+		}
+});
+
+
+	//var imgUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Tippecanoe.jpg/240px-Tippecanoe.jpg";
+	//https://en.wikipedia.org/w/api.php?action=query&titles=Tecumseh%27s_War&prop=pageimages&format=json&pithumbsize=240
+	//return imgUrl;
+}
