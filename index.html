@@ -40,13 +40,16 @@
 	<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 	<!-- Custom styles for this template -->
 	<link href="assets/main.css" rel="stylesheet">
+	<!--Years array imports-->
+	<script src="years/years.js"></script>
+	<script src="years/wars.js"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149494759-1"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-	  gtag('config', 'UA-149494759-1');
+	  gtag('config', 'UA-149494759-1X');
 	</script>
 	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d9f8f524634070014dce237&product=inline-share-buttons' async='async'></script>
 </head>
@@ -125,6 +128,21 @@
 			</div>
 		</aside>
 	</main>
+	<div class="container"><div class="row">
+		<div class"col-sm">
+	<form>
+  <div class="form-group">
+    <label for="yearQuery">Year</label>
+    <input type="number" class="form-control" default="1776"  min="1776" max="2019" id="queryYear" aria-describedby="yearHelp" placeholder="1776">
+    <small id="yearHelp" class="form-text text-muted">Has to be between 1776 and 2019.</small>
+  </div>
+	</form>
+	<button id="load">load</button>
+		</div>
+	<div class="col-sm">
+		<div id="load_space"></div>
+	</div></div>
+		</div>
 	<footer class="container-fluid">
 		<div class="row bar">
 			<div class="col-sm box1"></div><div class="col-sm box2"></div><div class="col-sm box3"></div>
@@ -132,5 +150,34 @@
 	</footer>
 	<script src="assets/main.js"></script>
 	<script async="async" data-cfasync="false" src="//pl15198512.pvclouds.com/4e56467fa95044092a880f0655e8b58e/invoke.js"></script>
+	<script>
+	$(document).ready(function(){
+  		$("button#load").click(function(){
+			var yearQ = $("input#queryYear").val();
+    			//$("#load_space").load("years/years.html #"+yearQ);
+    		        $('#load_space').empty();
+  			yearQ = yearQ - 1776;
+			//console.log(yearQ);
+			waryear[yearQ].forEach(yearLoop);
+			//console.log(waryear[yearQ]);
+		});
+	});	
+
+	function yearLoop(item, index){
+		if(item!=""){
+			console.log(wararray[item]);
+			$("#load_space").append('<div class="card" id="war_'+item+'">');
+			$("#load_space #war_"+item).append('<h2 class="card-header">'+wararray[item][0]+'</h2>');
+			$("#load_space #war_"+item).append('<div class="card-body"><h5 class="card-title">'+wararray[item][3]+'-'+wararray[item][4]+'</h5>');
+    			$("#load_space #war_"+item+" .card-body").append('<p class="card-text">'+wararray[item][1]+'</p>');
+			$("#load_space #war_"+item+" .card-body").append('<a class="btn btn-primary" href="'+wararray[item][2]+'">Find out more on Wikipedia</a>');
+			//$("#load_space").append(wararray[item]);
+			$("#load_space").append('</div>');
+			$("#load_space").append('</div>');
+
+
+		}
+	}
+	</script>
 </body>
 </html>
