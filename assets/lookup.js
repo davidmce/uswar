@@ -46,7 +46,7 @@ $(document).ready(function(){
 		//$("#load_space").append('<div class="col-sm-12 col-md-6" id="warCol_'+item[0]+'">');
 		//$("#load_space #warCol_"+item[0]).append('<li class="media" id="war_'+item[0]+'">');
 		$("#load_space").append('<li class="media border-bottom pb-4 mb-4" id="war_li_'+item[0]+'">');
-		$("#load_space #war_li_"+item[0]).append('<img width="220px" class="align-self-start mr-3 d-none d-sm-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/220px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
+		$("#load_space #war_li_"+item[0]).append('<img width="220px" class="align-self-start mr-3 d-none d-sm-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
 		$("#load_space #war_li_"+item[0]).append('<div class="media-body">');
 		$("#load_space #war_li_"+item[0]+' .media-body').append('<h2 class="mt-0 mb-1">'+item[1]+'</h2>');
 		$("#load_space #war_li_"+item[0]+' .media-body').append('<img class="mr-3 d-block d-sm-none" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
