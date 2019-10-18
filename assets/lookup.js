@@ -39,14 +39,13 @@ $(document).ready(function(){
 			//$("#load_space .accordion .card").append('<div class="card-body">');
 			var currentYear = new Date().getFullYear();
 			for(i = 1775; i <= currentYear; i++){
-				if(i%10 === 0){console.log('i: '+i);
-							$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+i+'</h5></li>');
-}
+				if(i%10 === 0){
+					$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+i+'</h5></li>');
+				}
 				$.each(warArray, function(k, val)
 				{
-					//console.log("key: "+k+" val: "+val[3]);
 					if(val[3]==i){
-						console.log(val);
+						//console.log(val);
 						warRenderList(val);
 					}
 				});
@@ -57,11 +56,14 @@ $(document).ready(function(){
 				});*/
 			}
 			warArray.forEach(function(item){
-				getWikiImg(item[1], function(imgURL){
-					if(imgURL!=""){
+				if(item[6]==""){
+					getWikiImg(item[1], function(imgURL){
 						$('#war_li_'+item[0]+' img').attr('src',imgURL);
-					}
-				});
+					});
+				}else{
+					$('#war_li_'+item[0]+' img').attr('src',item[6]);
+
+				}
 			});
 
 		});
@@ -78,24 +80,22 @@ $(document).ready(function(){
 	function peaceRenderList(year){
 		
 		$("#load_space").append('<li class="media" id="peaceli">');
-		$("#load_space #peaceli").append('<img width="220px" class="align-self-start mr-3 " src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/300px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
+		$("#load_space #peaceli").append('<img width="220px" class="align-self-start mr-3 d-none d-sm-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/300px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
 		$("#load_space #peaceli").append('<div class="media-body" id="peaceMedia">');
 		$("#load_space #peaceMedia").append('<h2 class="mt-0 mb-1">No War!</h2>');
-		$("#load_space #peaceMedia").append('<p class="lead">'+year+'</p>');
+		//$("#load_space #peaceMedia").append('<p class="lead">'+year+'</p>');
 		$("#load_space #peaceMedia").append('<p class="card-text">This is one of the few years where the US was involved in no armed conflict or war.</p>');
 	}
 	function warRenderList(item){		
-		//$("#load_space").append('<div class="col-sm-12 col-md-6" id="warCol_'+item[0]+'">');
-		//$("#load_space #warCol_"+item[0]).append('<li class="media" id="war_'+item[0]+'">');
+
 		$("#load_space").append('<li class="media border-bottom pb-4 mb-4" id="war_li_'+item[0]+'">');
 		$("#load_space #war_li_"+item[0]).append('<img width="220px" class="align-self-start mr-3 d-none d-sm-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
 		$("#load_space #war_li_"+item[0]).append('<div class="media-body">');
 		$("#load_space #war_li_"+item[0]+' .media-body').append('<h2 class="mt-0 mb-1">'+item[1]+'</h2>');
-		$("#load_space #war_li_"+item[0]+' .media-body').append('<img class="mb-1 d-block d-sm-none" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
+		$("#load_space #war_li_"+item[0]+' .media-body').append('<img class="mb-1 d-block d-sm-none rounded mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
 		$("#load_space #war_li_"+item[0]+' .media-body').append('<p class="lead">'+item[3]+'-'+item[4]+'</p>');
 		$("#load_space #war_li_"+item[0]+" .media-body").append('<p class="">'+item[2]+'</p>');
 		$("#load_space #war_li_"+item[0]+" .media-body").append('<a rel="ext" class="btn btn-primary" href="'+item[5]+'">Find out more on Wikipedia</a>');
-		//$("#load_space").append('<br />');
 	}
 	/*function warRenderCard(item){	7	
 		$("#load_space").append('<div class="col-sm-6 col-md-4" id="warCol_'+item[0]+'">');

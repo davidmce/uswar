@@ -20,6 +20,8 @@ $.ajax( {
 });
 
 function getWikiImg(title,callback){
+	//console.log("callback title: "+title);//+" source: "+wikiResponse.query.pages[pageID].thumbnail.source);
+
 $.ajax( {
 	url: "https://en.wikipedia.org/w/api.php",
 	jsonp: "callback", 
@@ -40,11 +42,13 @@ $.ajax( {
 		for (const x in response.query.pages){
 			var pageID = x;
 		}
-		//console.log(wikiResponse);
 		//console.log(pageID);
-		//console.log(wikiResponse.query.pages[pageID].thumbnail.source);
+		//console.log(wikiResponse);
+
+		//if (wikiResponse.query.pages[pageID].thumbnail.source){
 		var imgUrl = wikiResponse.query.pages[pageID].thumbnail.source;
 		callback(imgUrl);
+		//}
 		//console.log('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/'+imgTitle+'/240px-'+imgTitle);
 		}
 });
