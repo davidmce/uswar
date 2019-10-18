@@ -1,10 +1,11 @@
 $(document).ready(function(){
-  		$("button#load").click(function(){
+  		$("button#loadYear").click(function(){
 			
 			if($("input#queryYear").val() !=""){yearQ = $("input#queryYear").val();}else{yearQ=1776;}
 			$('#load_space').empty();
 			//console.log("year: "+yearQ);
 			var i = 0;
+			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+yearQ+'</h5></li>');
 			warArray.forEach(function(item){
 				if(yearQ>=item[3] && yearQ<=item[4]){
 					//setTimeout(function(){warRender(item)},(i*50));
@@ -18,12 +19,53 @@ $(document).ready(function(){
 					getWikiImg(item[1], function(imgURL){
 						if(imgURL!=""){
 							$('#war_li_'+item[0]+' img').attr('src',imgURL);
+							console.log(item[0]+" - "+imgURL)
 						}
 					});
 				}
 			});
 			if(i==0){peaceRenderList(yearQ);}
 		});
+		$("button#loadAll").click(function(){
+			$('#load_space').empty();
+			console.log('pressed all');
+			var i;
+			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">1776</h5></li>');
+
+			//$("#load_space").append('<div class="accordion">')
+			//$("#load_space .accordion").append('<div class="card">');
+			//$("#load_space .accordion .card").append('<div class="card-header">');
+			//$("#load_space .accordion .card .card-header").append('<div class="h5"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">1776</button></h5>');
+			//$("#load_space .accordion .card").append('<div class="card-body">');
+			var currentYear = new Date().getFullYear();
+			for(i = 1775; i <= currentYear; i++){
+				if(i%10 === 0){console.log('i: '+i);
+							$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+i+'</h5></li>');
+}
+				$.each(warArray, function(k, val)
+				{
+					//console.log("key: "+k+" val: "+val[3]);
+					if(val[3]==i){
+						console.log(val);
+						warRenderList(val);
+					}
+				});
+				/*warArray.forEach(function(item){
+					if(i>=item[3]){
+						warRenderList(item);
+					}
+				});*/
+			}
+			warArray.forEach(function(item){
+				getWikiImg(item[1], function(imgURL){
+					if(imgURL!=""){
+						$('#war_li_'+item[0]+' img').attr('src',imgURL);
+					}
+				});
+			});
+
+		});
+
 	});	
 	function peaceRender(year){
 		$("#load_space").append('<div class="col-sm-6 col-md-4" id="peaceCol">');
