@@ -1,3 +1,4 @@
+html{ scroll-behavior: smooth}
 body {padding-top:0}
 .bar {height: 8px;margin-bottom:2em;margin-top: 1em;}
 .bar .box1 {height: 8px;background-color:#3C3B6E}

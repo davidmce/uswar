@@ -8,26 +8,37 @@ $(document).ready(function(){
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+yearQ+'</h5></li>');
 			warArray.forEach(function(item){
 				if(yearQ>=item[3] && yearQ<=item[4]){
-					//setTimeout(function(){warRender(item)},(i*50));
+					console.log("start: "+item[3]+" end: "+item[4]);
 					warRenderList(item);
-				//	console.log("delay: "+i*50);
+				
 					i++;
 				}
 			});
 			warArray.forEach(function(item){
 				if(yearQ>=item[3] && yearQ<=item[4]){
-					getWikiImg(item[1], function(imgURL){
+					/*getWikiImg(item[1], function(imgURL){
 						if(imgURL!=""){
 							$('#war_li_'+item[0]+' img').attr('src',imgURL);
 							console.log(item[0]+" - "+imgURL)
 						}
-					});
+					});*/
+					if(item[6]==""){
+						getWikiImg(item[1], function(imgURL){
+							$('#war_li_'+item[0]+' img').attr('src',imgURL);
+						});
+					}else{
+						$('#war_li_'+item[0]+' img').attr('src',item[6]);
+					}
 				}
 			});
 			if(i==0){peaceRenderList(yearQ);}
 		});
 		$("button#loadAll").click(function(){
 			$('#load_space').empty();
+			//$('#allYears').removeClass('d-none');
+			$('#allYearsSM').removeClass('d-none');
+			$('#allYears').addClass('d-md-block');
+			$('#allYearsSM').addClass('d-md-none');
 			console.log('pressed all');
 			var i;
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">1776</h5></li>');
@@ -40,7 +51,8 @@ $(document).ready(function(){
 			var currentYear = new Date().getFullYear();
 			for(i = 1775; i <= currentYear; i++){
 				if(i%10 === 0){
-					$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+i+'</h5></li>');
+					$("#load_space").append('<li class="list-group-item" id="'+i+'" ><h5 class="text-center display-3 mb-4 mt-2">'+i+'</h5></li>');
+					$("#allYears > .btn-group").append('<a class="btn btn-secondary btn-sm" href="#'+i+'">'+i+'</a>');
 				}
 				$.each(warArray, function(k, val)
 				{
@@ -91,8 +103,8 @@ $(document).ready(function(){
 		$("#load_space").append('<li class="media border-bottom pb-4 mb-4" id="war_li_'+item[0]+'">');
 		$("#load_space #war_li_"+item[0]).append('<img width="220px" class="align-self-start mr-3 d-none d-sm-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
 		$("#load_space #war_li_"+item[0]).append('<div class="media-body">');
-		$("#load_space #war_li_"+item[0]+' .media-body').append('<h2 class="mt-0 mb-1">'+item[1]+'</h2>');
-		$("#load_space #war_li_"+item[0]+' .media-body').append('<img class="mb-1 d-block d-sm-none rounded mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
+		$("#load_space #war_li_"+item[0]+' .media-body').append('<h2 class="mt-0 mb-">'+item[1]+'</h2>');
+		$("#load_space #war_li_"+item[0]+' .media-body').append('<img class="mb-2 d-block d-sm-none rounded mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/180px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
 		$("#load_space #war_li_"+item[0]+' .media-body').append('<p class="lead">'+item[3]+'-'+item[4]+'</p>');
 		$("#load_space #war_li_"+item[0]+" .media-body").append('<p class="">'+item[2]+'</p>');
 		$("#load_space #war_li_"+item[0]+" .media-body").append('<a rel="ext" class="btn btn-primary" href="'+item[5]+'">Find out more on Wikipedia</a>');

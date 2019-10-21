@@ -30,10 +30,10 @@
 	  gtag('config', 'UA-149494759-1');
 	</script>
 	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d9f8f524634070014dce237&product=inline-share-buttons' async='async'></script-->
-</head>
+	</head>
 <body>
 	<main>
-		<div class="container-fluid">
+		<div class="container-fluid" id="yearLookup">
 			<div class="row bar">
 				<div class="col-sm box1"></div><div class="col-sm box2"></div><div class="col-sm box3"></div>
 			</div>
@@ -52,19 +52,36 @@
 					<div class="form-inline">
 					  <div class="input-group">
 						<label class="sr-only" for="queryYear">Year: </label>
-						<input onchange="checkYear(this)" type="number" class="form-control mb-2 mr-3" default="1776"  min="1776" max="2019" id="queryYear" aria-describedby="yearHelp" placeholder="1776">
+						<input onchange="checkYear(this)" type="number" class="form-control mb-2 mr-3" min="1776" max="2019" id="queryYear" aria-describedby="yearHelp" placeholder="1776">
 						<!--small id="yearHelp" class="form-text text-muted">Has to be between 1776 and 2019.</small-->
-					  
-					  <button id="loadYear" class="btn btn-primary mb-2 mr-2">load</button>
-					  <button id="loadAll" class="btn btn-primary mb-2">All</button>
+							<div class="btn-group mb-2">
+							  <button id="loadYear" class="btn btn-primary ">Load Year</button>
+							  <button id="loadAll" class="btn btn-primary">Load All</button>
+						  </div>
 					  </div>
 					</div>
 				</div>
 			</div>
+		</div>	
+			<nav class="navbar sticky-top navbar-light">
+				<div class="container-fluid d-none" id="allYears">
+					<div class="btn-group">
+						<a class="btn btn-secondary btn-sm" href="#yearLookup">Top</a>
+					</div>
+				</div>
+				<div class="navbar-nav ml-auto d-none" id="allYearsSM">
+									<div class="btn-group">
 
-		</div>
+					<a class="btn btn-secondary btn-sm" href="#yearLookup">Top</a>
+					<a class="btn btn-secondary btn-sm" href="#1800">1800</a>
+					<a class="btn btn-secondary btn-sm" href="#1900">1900</a>
+					<a class="btn btn-secondary btn-sm" href="#2000">2000</a>
+					</div>
+				</div>
+			</nav>
+
 		<div class="container-fluid">
-			<ul class="unstyled-list" id="load_space"></div>
+			<ul class="unstyled-list" id="load_space"></ul>
 		</div>
 	</main>
 	<footer class="container-fluid">
