@@ -3,12 +3,15 @@ $(document).ready(function(){
 			
 			if($("input#queryYear").val() !=""){yearQ = $("input#queryYear").val();}else{yearQ=1776;}
 			$('#load_space').empty();
+			$('#allYearsSM').addClass('d-none');
+			$('#allYears').removeClass('d-md-block');
+			$('#allYearsSM').removeClass('d-md-none');
 			//console.log("year: "+yearQ);
 			var i = 0;
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+yearQ+'</h5></li>');
 			warArray.forEach(function(item){
 				if(yearQ>=item[3] && yearQ<=item[4]){
-					console.log("start: "+item[3]+" end: "+item[4]);
+					//console.log("start: "+item[3]+" end: "+item[4]);
 					warRenderList(item);
 				
 					i++;
