@@ -11,9 +11,9 @@ $(document).ready(function(){
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+yearQ+'</h5></li>');
 			warArray.forEach(function(item){
 				if(yearQ>=item[3] && yearQ<=item[4]){
-					//console.log("start: "+item[3]+" end: "+item[4]);
+					console.log("start: "+item[3]+" end: "+item[4]);
 					warRenderList(item);
-				
+
 					i++;
 				}
 			});
@@ -25,15 +25,18 @@ $(document).ready(function(){
 							console.log(item[0]+" - "+imgURL)
 						}
 					});*/
-					if(item[6]==""){
-						getWikiImg(item[1], function(imgURL){
-							$('#war_li_'+item[0]+' img').attr('src',imgURL);
-						});
-					}else{
+					if(item[6]){
+						console.log("array image: "+item[6]);
 						$('#war_li_'+item[0]+' img').attr('src',item[6]);
+					}else{
+						getWikiImg(item[1], function(imgURL){
+							$('#war_li_'+item[0]+' img').attr('src',imgURL);						
+							console.log("wiki image: "+imgURL);
+						});
 					}
 				}
 			});
+			
 			if(i==0){peaceRenderList(yearQ);}
 		});
 		$("button#loadAll").click(function(){
@@ -71,13 +74,17 @@ $(document).ready(function(){
 				});*/
 			}
 			warArray.forEach(function(item){
-				if(item[6]==""){
-					getWikiImg(item[1], function(imgURL){
-						$('#war_li_'+item[0]+' img').attr('src',imgURL);
-					});
-				}else{
+				if(item[6]){
+					console.log("array image: "+item[6]);
 					$('#war_li_'+item[0]+' img').attr('src',item[6]);
-
+				}else{
+					
+					/* some kind of issue recalling the "pages" on some of these. Seem to work, but return errors too */
+					
+					getWikiImg(item[1], function(imgURL){
+						$('#war_li_'+item[0]+' img').attr('src',imgURL);						
+						console.log("wiki image: "+imgURL);
+					});
 				}
 			});
 

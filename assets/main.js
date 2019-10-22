@@ -20,7 +20,7 @@ $.ajax( {
 });
 
 function getWikiImg(title,callback){
-	//console.log("callback title: "+title);//+" source: "+wikiResponse.query.pages[pageID].thumbnail.source);
+	//console.log("PRE callback title: "+title);//+" source: "+wikiResponse.query.pages[pageID].thumbnail.source);
 
 $.ajax( {
 	url: "https://en.wikipedia.org/w/api.php",
@@ -31,7 +31,7 @@ $.ajax( {
 		titles: title, 
 		prop: "pageimages",
 		format: "json",
-		pithumbsize: "260"
+		pithumbsize: "360"
 	},
 	xhrFields: { withCredentials: true },
 	
@@ -40,13 +40,20 @@ $.ajax( {
 		var wikiResponse = response;
 		
 		for (const x in response.query.pages){
+
 			var pageID = x;
+
+			//console.log('callback x: '+x);
+			//console.log("POST callback title: "+title);//+" source: "+wikiResponse.query.pages[pageID].thumbnail.source);
+
 		}
 		//console.log(pageID);
 		//console.log(wikiResponse);
 
 		//if (wikiResponse.query.pages[pageID].thumbnail.source){
 		var imgUrl = wikiResponse.query.pages[pageID].thumbnail.source;
+		console.log('callback pageID: '+pageID+' POST callback title: '+title+' imgUrl: '+imgUrl);
+
 		callback(imgUrl);
 		//}
 		//console.log('https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/'+imgTitle+'/240px-'+imgTitle);
