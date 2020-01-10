@@ -9,3 +9,5 @@ body {padding-top:0}
 img.card-img-top{object-fit: contain;
     max-height: 300px;
 width: auto;}
+.btn-primary{background-color:#3C3B6E;border-color:#3C3B6E}
+.btn-primary:hover{background-color:#B22234;border-color:#B22234}
