@@ -52,7 +52,7 @@ $.ajax( {
 
 		//if (wikiResponse.query.pages[pageID].thumbnail.source){
 		var imgUrl = wikiResponse.query.pages[pageID].thumbnail.source;
-		console.log('callback pageID: '+pageID+' POST callback title: '+title+' imgUrl: '+imgUrl);
+		//console.log('callback pageID: '+pageID+' POST callback title: '+title+' imgUrl: '+imgUrl);
 
 		callback(imgUrl);
 		//}

@@ -106,6 +106,61 @@
 				<div class="col-sm box1"></div><div class="col-sm box2"></div><div class="col-sm box3"></div>
 			</div>
 			<div class="row"><div class="ad" id="container-4e56467fa95044092a880f0655e8b58e"></div></div>
+		</div>
+		<section>
+		<div class="container-fluid" id="yearLookup">
+			<div class="row bar">
+				<div class="col-sm box1"></div><div class="col-sm box2"></div><div class="col-sm box3"></div>
+			</div>
+		</div>
+		<div class="container mb-4">
+			<div class="row">
+				<div class="col">
+						<h2>Historic Lookup:</h2>			
+						<p>Enter a year between 1776 and the present, and you can see all the wars and 
+						armed conflict that involved USA.</p>
+						<p>Can you find a year without one?</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="form-inline">
+					  <div class="input-group">
+						<label class="sr-only" for="queryYear">Year: </label>
+						<input onchange="checkYear(this)" type="number" class="form-control mb-2 mr-3" min="1776" max="2019" id="queryYear" aria-describedby="yearHelp" placeholder="1776">
+						<!--small id="yearHelp" class="form-text text-muted">Has to be between 1776 and 2019.</small-->
+							<div class="btn-group mb-2">
+							  <button id="loadYear" class="btn btn-primary ">Load Year</button>
+							  <button id="loadAll" class="btn btn-primary">Load All</button>
+						  </div>
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>	
+			<nav class="navbar sticky-top navbar-light">
+				<div class="container-fluid d-none" id="allYears">
+					<div class="btn-group">
+						<a class="btn btn-secondary btn-sm" href="#yearLookup">Top</a>
+					</div>
+				</div>
+				<div class="navbar-nav ml-auto d-none" id="allYearsSM">
+									<div class="btn-group">
+
+					<a class="btn btn-secondary btn-sm" href="#yearLookup">Top</a>
+					<a class="btn btn-secondary btn-sm" href="#1800">1800</a>
+					<a class="btn btn-secondary btn-sm" href="#1900">1900</a>
+					<a class="btn btn-secondary btn-sm" href="#2000">2000</a>
+					</div>
+				</div>
+			</nav>
+
+		<div class="container-fluid">
+			<ul class="unstyled-list" id="load_space"></ul>
+		</div>
+		</section>
+		
+		<div class="container-fluid">
 			<div class="row bar">
 				<div class="col-sm box1"></div><div class="col-sm box2"></div><div class="col-sm box3"></div>
 			</div>
@@ -134,68 +189,7 @@
 		</div>
 	</footer>
 	<script src="assets/main.js"></script>
+	<script src="assets/lookup.js"></script>
 	<script async="async" data-cfasync="false" src="//pl15198512.pvclouds.com/4e56467fa95044092a880f0655e8b58e/invoke.js"></script>
-	<script>
-
-	$(document).ready(function(){
-  		$("button#load").click(function(){
-			
-			if($("input#queryYear").val() !=""){yearQ = $("input#queryYear").val();
-			}else{yearQ=1776;}
-			$('#load_space').empty();
-			console.log("year: "+yearQ);
-			var i = 0;
-			warArray.forEach(function(item){
-				if(yearQ>=item[3] && yearQ<=item[4]){
-					//setTimeout(function(){warRender(item)},(i*50));
-					warRender(item);
-				//	console.log("delay: "+i*50);
-					i++;
-				}
-			});
-			warArray.forEach(function(item){
-                                if(yearQ>=item[3] && yearQ<=item[4]){
-                                	getWikiImg(item[1], function(imgURL){
-						if(imgURL!=""){
-							$('#war_'+item[0]+' img').attr('src',imgURL);
-						}
-			     	   	});
-				}
-                        });
-			if(i==0){alert('No War!!')}
-		});
-	});	
-
-	function warRender(item){
-		$("#load_space").append('<div class="col-sm-6 col-md-4" id="warCol_'+item[0]+'">');
-		$("#load_space #warCol_"+item[0]).append('<div class="card" id="war_'+item[0]+'">');
-
-		/*problem is this is now returning the items in whatever order the image loads in!*/
-		
-		/*BETTER SYSTEM!!  AUTOMATICALLY USE LOW RES US FLAG, AND THEN REPLACE IT WITH CORRECT IMAGE!!*/
-		//getWikiImg(item[1], function(imgURL){
-			//alert(imgURL);
-		
-		$("#load_space #war_"+item[0]).append('<img height="300px" class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Flag_of_the_United_States_%281877%E2%80%931890%29.svg/100px-Flag_of_the_United_States_%281877%E2%80%931890%29.svg.png">');
-		$("#load_space #war_"+item[0]).append('<h2 class="card-header">'+item[1]+'</h2>');
-		$("#load_space #war_"+item[0]).append('<div class="card-body"><h5 class="card-title">'+item[3]+'-'+item[4]+'</h5>');
-		$("#load_space #war_"+item[0]+" .card-body").append('<p class="card-text">'+item[2]+'</p>');
-		$("#load_space #war_"+item[0]+" .card-body").append('<a class="btn btn-primary" href="'+item[5]+'">Find out more on Wikipedia</a>');
-		
-		//Footer $("#load_space #war_"+item[0]).append('<div class="card-footer text-center text-muted">');
-
-		$("#load_space").append('<br />');
-		getWikiImg(item[1], function(imgURL){
-		//	$("#load_space #war_"+item[0]).prepend('<img height="300px" class="card-img-top" src="'+imgURL+'">');
-
-	});
-	}
-
-	function checkYear(data){
-		if(data.value<1776){$('#queryYear').val(1776)}
-		var currentYear = new Date().getFullYear();
-		if(data.value>currentYear){$('#queryYear').val(currentYear)}
-	}
-	</script>
 </body>
 </html>

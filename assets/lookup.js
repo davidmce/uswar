@@ -11,7 +11,7 @@ $(document).ready(function(){
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+yearQ+'</h5></li>');
 			warArray.forEach(function(item){
 				if(yearQ>=item[3] && yearQ<=item[4]){
-					console.log("start: "+item[3]+" end: "+item[4]);
+					//console.log("start: "+item[3]+" end: "+item[4]);
 					warRenderList(item);
 
 					i++;
@@ -26,12 +26,12 @@ $(document).ready(function(){
 						}
 					});*/
 					if(item[6]){
-						console.log("array image: "+item[6]);
+						//console.log("array image: "+item[6]);
 						$('#war_li_'+item[0]+' img').attr('src',item[6]);
 					}else{
 						getWikiImg(item[1], function(imgURL){
 							$('#war_li_'+item[0]+' img').attr('src',imgURL);						
-							console.log("wiki image: "+imgURL);
+							//console.log("wiki image: "+imgURL);
 						});
 					}
 				}
@@ -54,28 +54,40 @@ $(document).ready(function(){
 			//$("#load_space .accordion .card").append('<div class="card-header">');
 			//$("#load_space .accordion .card .card-header").append('<div class="h5"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">1776</button></h5>');
 			//$("#load_space .accordion .card").append('<div class="card-body">');
-			var currentYear = new Date().getFullYear();
+			var currentYear = new Date().getFullYear() - 1;
+			console.log(currentYear);
+			var nowar = 0;
 			for(i = 1775; i <= currentYear; i++){
 				if(i%10 === 0){
 					$("#load_space").append('<li class="list-group-item" id="'+i+'" ><h5 class="text-center display-3 mb-4 mt-2">'+i+'</h5></li>');
 					$("#allYears > .btn-group").append('<a class="btn btn-secondary btn-sm" href="#'+i+'">'+i+'</a>');
+					console.log('year: '+i+' war counter reset');
+					nowar = 0;
 				}
 				$.each(warArray, function(k, val)
 				{
 					if(val[3]==i){
 						//console.log(val);
 						warRenderList(val);
+						nowar++;	
+						console.log(nowar+' wars');
 					}
 				});
+				if (i%10 === 9 && nowar === 0){
+					console.log(i);
+					console.log(nowar+' no wars');
+					peaceRenderDecade(i)
+				}
 				/*warArray.forEach(function(item){
 					if(i>=item[3]){
 						warRenderList(item);
 					}
 				});*/
+				
 			}
 			warArray.forEach(function(item){
 				if(item[6]){
-					console.log("array image: "+item[6]);
+					//console.log("array image: "+item[6]);
 					$('#war_li_'+item[0]+' img').attr('src',item[6]);
 				}else{
 					
@@ -83,7 +95,7 @@ $(document).ready(function(){
 					
 					getWikiImg(item[1], function(imgURL){
 						$('#war_li_'+item[0]+' img').attr('src',imgURL);						
-						console.log("wiki image: "+imgURL);
+						//console.log("wiki image: "+imgURL);
 					});
 				}
 			});
@@ -108,6 +120,17 @@ $(document).ready(function(){
 		//$("#load_space #peaceMedia").append('<p class="lead">'+year+'</p>');
 		$("#load_space #peaceMedia").append('<p class="card-text">This is one of the few years where the US was involved in no armed conflict or war.</p>');
 	}
+	function peaceRenderDecade(year){
+		decade=year-9;
+                $("#load_space").append('<li class="media" id="peaceli_'+decade+'">');
+		$('#load_space #peaceli_'+decade).append('<img width="220px" class="align-self-start mr-3 d-none d-sm-block" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/US_Peace_flag.svg/220px-US_Peace_flag.svg.png">');
+		$('#load_space #peaceli_'+decade).append('<div class="media-body peaceMedia">');
+                $('#load_space #peaceli_'+decade+' .peaceMedia').append('<h2>No War this decade!</h2>');
+                $('#load_space #peaceli_'+decade+' .peaceMedia').append('<p>This has only happened <strong>twice</strong> in the history of the United States!</h2>');
+
+
+	}
+
 	function warRenderList(item){		
 
 		$("#load_space").append('<li class="media border-bottom pb-4 mb-4" id="war_li_'+item[0]+'">');
