@@ -6,6 +6,9 @@ $(document).ready(function(){
 			$('#allYearsSM').addClass('d-none');
 			$('#allYears').removeClass('d-md-block');
 			$('#allYearsSM').removeClass('d-md-none');
+			
+			$('#allYears > .btn-group').children().remove();
+
 			//console.log("year: "+yearQ);
 			var i = 0;
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">'+yearQ+'</h5></li>');
@@ -45,6 +48,9 @@ $(document).ready(function(){
 			$('#allYearsSM').removeClass('d-none');
 			$('#allYears').addClass('d-md-block');
 			$('#allYearsSM').addClass('d-md-none');
+			
+			$('#allYears > .btn-group').children().remove();
+
 			console.log('pressed all');
 			var i;
 			$("#load_space").append('<li class="list-group-item" ><h5 class="text-center display-3 mb-5">1776</h5></li>');
@@ -159,3 +165,18 @@ $(document).ready(function(){
 		var currentYear = new Date().getFullYear();
 		if(data.value>currentYear){$('#queryYear').val(currentYear)}
 	}
+	
+	var getUrlParameter = function getUrlParameter(sParam) {
+		var sPageURL = window.location.search.substring(1),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName,
+			i;
+
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+			}
+		}
+	};
